@@ -21,5 +21,5 @@ dataset_train <- subset(dataset, split == TRUE)
 dataset_test <- subset(dataset, split == FALSE)
 
 # Feature Scaling
-dataset_train[, 2:3] <- scale(dataset_train[, 2:3])
-dataset_test[, 2:3] <- scale(dataset_test[, 2:3])
+# dataset_train[, 2:3] <- scale(dataset_train[, 2:3])
+# dataset_test[, 2:3] <- scale(dataset_test[, 2:3])
