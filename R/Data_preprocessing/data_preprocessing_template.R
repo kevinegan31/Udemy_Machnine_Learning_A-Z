@@ -7,7 +7,7 @@ setwd(paste("~/Documents/Udemy Courses/Machine Learning A-Z/",
             " Data Preprocessing --------------------/R", sep = ""))
 # Import the dataset
 dataset <- read.csv("Data.csv")
-
+dataset <- dataset[, 2:3] # subset
 # Split into train/test set
 # install.packages("caTools")
 # caTools library helps split into training/test set
