@@ -51,7 +51,6 @@ y_pred <- predict(regressor,
 y_pred
 
 # Visualizing Regression Model Results (for higher resolution and smoother curve)
-library(ggplot2)
 x_grid <- seq(min(dataset$Level), max(dataset$Level), 0.01)
 ggplot() +
   geom_point(aes(x = dataset$Level, y = dataset$Salary),
