@@ -17,7 +17,7 @@ library(randomForest)
 set.seed(1234)
 regressor <- randomForest(formula = Salary ~ .,
                           data = dataset,
-                          ntree = 100)
+                          ntree = 500)
 
 # Predicting a new result
 y_pred <- predict(regressor,
