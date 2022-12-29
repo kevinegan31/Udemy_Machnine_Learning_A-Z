@@ -1,13 +1,14 @@
-# Regression Template
+rm(list = ls())
+# Support Vector Regression
 
 # Set Working Directory
 setwd(paste("~/Documents/Udemy Courses/Machine Learning A-Z/",
             "Machine Learning A-Z (Codes and Datasets)/Part 2 - Regression/",
-            "Section 5 - Multiple Linear Regression/R", sep = ""))
+            "Section 7 - Support Vector Regression (SVR)/R", sep = ""))
 
 # Import the dataset
-dataset <- read.csv("50_Startups.csv")
-# dataset <- dataset[, 2:3] # subset
+dataset <- read.csv("Position_Salaries.csv")
+dataset <- dataset[, 2:3] # subset
 
 # Encoding categorical data
 # dataset$State <- factor(dataset$State,
@@ -29,30 +30,39 @@ dataset <- read.csv("50_Startups.csv")
 # dataset_train[, 2:3] <- scale(dataset_train[, 2:3])
 # dataset_test[, 2:3] <- scale(dataset_test[, 2:3])
 
-# Fitting Regression Model to the dataset
+# Fitting SVR Model to the dataset
 # Create your regressor
+# install.packages("e1071")
+library(e1071)
+svr_reg <- svm(formula = Salary ~ .,
+               data = dataset,
+               type = 'eps-regression')
+
 
 # Predicting a new result
-y_pred <- predict(regressor,
+y_pred <- predict(svr_reg,
                   newdata = data.frame(Level = 6.5))
 y_pred
 
-# Visualizing Regression Model Results (for higher resolution and smoother curve)
+# Visualizing SVR Results
 library(ggplot2)
+ggplot() +
+  geom_point(aes(x = dataset$Level, y = dataset$Salary),
+             color = 'red') +
+  geom_line(aes(x = dataset$Level, y = predict(svr_reg, newdata = dataset)),
+            color = 'blue') +
+  ggtitle('Salary vs Position Level (SVR)') +
+  xlab('Position Level') +
+  ylab('Salary')
+
+# Visualizing Regression Model Results (for higher resolution and smoother curve)
 x_grid <- seq(min(dataset$Level), max(dataset$Level), 0.1)
 ggplot() +
   geom_point(aes(x = dataset$Level, y = dataset$Salary),
              color = 'red') +
-  geom_line(aes(x = x_grid, y = predict(regressor, newdata = data.frame(Level = x_grid))),
+  geom_line(aes(x = x_grid, y = predict(svr_reg, newdata = data.frame(Level = x_grid))),
             color = 'blue') +
-  ggtitle('Salary vs Position Level (Regression Model)') +
+  ggtitle('Salary vs Position Level (SVR Smooth Grid)') +
   xlab('Position Level') +
   ylab('Salary')
-
-
-
-
-
-
-
 
