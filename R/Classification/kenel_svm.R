@@ -1,9 +1,10 @@
 rm(list = ls())
-# Support Vector Machine (SVM)
+# Kernel SVM
+
 
 setwd(paste("/Users/kevinegan/Documents/Udemy Courses/",
             "Machine Learning A-Z/Machine Learning A-Z (Codes and Datasets)/",
-            "Part 3 - Classification/Section 16 - Support Vector Machine (SVM)/R", sep = ""))
+            "Part 3 - Classification/Section 17 - Kernel SVM/R", sep = ""))
 
 # Import the dataset
 dataset <- read.csv("Social_Network_Ads.csv")
@@ -35,9 +36,9 @@ dataset_test[, 1:(ncol(dataset) - 1)] <-
 # Fit classifier regression model
 library(e1071)
 classifier <- svm(formula = Purchased ~ .,
-                 data = dataset_train,
-                 type = 'C-classification',
-                 kernel = 'linear')
+                  data = dataset_train,
+                  type = 'C-classification',
+                  kernel = 'radial')
 
 # Predicting the test set results
 # Vector of the predicted probabilities of the test set
@@ -64,7 +65,7 @@ grid_set = expand.grid(X1, X2)
 colnames(grid_set) = c('Age', 'EstimatedSalary')
 y_grid = predict(classifier, newdata = grid_set)
 plot(set[, -3],
-     main = 'SVM (Training set)',
+     main = 'Kernel SVM (Training set)',
      xlab = 'Age', ylab = 'Estimated Salary',
      xlim = range(X1), ylim = range(X2))
 contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
@@ -79,9 +80,10 @@ grid_set = expand.grid(X1, X2)
 colnames(grid_set) = c('Age', 'EstimatedSalary')
 y_grid = predict(classifier, newdata = grid_set)
 plot(set[, -3],
-     main = 'SVM (Test set)',
+     main = 'Kernel SVM (Test set)',
      xlab = 'Age', ylab = 'Estimated Salary',
      xlim = range(X1), ylim = range(X2))
 contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
 points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'dodgerblue', 'salmon'))
 points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'dodgerblue3', 'salmon3'))
+
