@@ -63,7 +63,8 @@ X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
 X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
 grid_set = expand.grid(X1, X2)
 colnames(grid_set) = c('Age', 'EstimatedSalary')
-y_grid = predict(classifier, newdata = grid_set)
+y_grid = predict(classifier,
+                 newdata = grid_set)
 plot(set[, -3],
      main = 'Kernel SVM (Training set)',
      xlab = 'Age', ylab = 'Estimated Salary',
@@ -78,7 +79,8 @@ X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
 X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
 grid_set = expand.grid(X1, X2)
 colnames(grid_set) = c('Age', 'EstimatedSalary')
-y_grid = predict(classifier, newdata = grid_set)
+y_grid = predict(classifier,
+                 newdata = grid_set)
 plot(set[, -3],
      main = 'Kernel SVM (Test set)',
      xlab = 'Age', ylab = 'Estimated Salary',
