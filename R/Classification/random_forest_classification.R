@@ -28,17 +28,19 @@ dataset_test <- subset(dataset, split == FALSE)
 # Feature Scaling
 # Scale independent variables
 # Remove scaling to plot decision tree
-# dataset_train[, 1:(ncol(dataset) - 1)] <-
-#   scale(dataset_train[, 1:(ncol(dataset) - 1)])
-# dataset_test[, 1:(ncol(dataset) - 1)] <-
-#   scale(dataset_test[, 1:(ncol(dataset) - 1)])
+dataset_train[, 1:(ncol(dataset) - 1)] <-
+  scale(dataset_train[, 1:(ncol(dataset) - 1)])
+dataset_test[, 1:(ncol(dataset) - 1)] <-
+  scale(dataset_test[, 1:(ncol(dataset) - 1)])
 
 # Fit classifier regression model
 library(randomForest)
-set.seed(1234)
 classifier <- randomForest(formula = Purchased ~ .,
                           data = dataset_train,
-                          ntree = 500)
+                          ntree = 50)
+# classifier <- randomForest(x = dataset_test[, ncol(dataset_test)],
+#                            y = dataset_train$Purchased,
+#                            ntree = 10)
 # Predicting the test set results
 # Vector of the predicted probabilities of the test set
 # For example, this predicts that User #2 will have a low chance
