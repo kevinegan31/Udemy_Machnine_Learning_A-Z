@@ -27,10 +27,11 @@ dataset_test <- subset(dataset, split == FALSE)
 
 # Feature Scaling
 # Scale independent variables
-dataset_train[, 1:(ncol(dataset) - 1)] <-
-  scale(dataset_train[, 1:(ncol(dataset) - 1)])
-dataset_test[, 1:(ncol(dataset) - 1)] <-
-  scale(dataset_test[, 1:(ncol(dataset) - 1)])
+# Remove scaling to plot decision tree
+# dataset_train[, 1:(ncol(dataset) - 1)] <-
+#   scale(dataset_train[, 1:(ncol(dataset) - 1)])
+# dataset_test[, 1:(ncol(dataset) - 1)] <-
+#   scale(dataset_test[, 1:(ncol(dataset) - 1)])
 
 # Fit classifier regression model
 library(rpart)
@@ -91,3 +92,7 @@ contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
 points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'dodgerblue', 'salmon'))
 points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'dodgerblue3', 'salmon3'))
 
+
+# Plot Decision Tree
+plot(classifier)
+text(classifier)
