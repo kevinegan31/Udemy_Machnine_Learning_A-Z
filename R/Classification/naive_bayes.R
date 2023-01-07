@@ -1,9 +1,9 @@
 rm(list = ls())
-# Kernel SVM
+# Naive Bayes Classifier
 
 setwd(paste("/Users/kevinegan/Documents/Udemy Courses/",
             "Machine Learning A-Z/Machine Learning A-Z (Codes and Datasets)/",
-            "Part 3 - Classification/Section 17 - Kernel SVM/R", sep = ""))
+            "Part 3 - Classification/Section 18 - Naive Bayes/R", sep = ""))
 
 # Import the dataset
 dataset <- read.csv("Social_Network_Ads.csv")
@@ -34,10 +34,9 @@ dataset_test[, 1:(ncol(dataset) - 1)] <-
 
 # Fit classifier regression model
 library(e1071)
-classifier <- svm(formula = Purchased ~ .,
-                  data = dataset_train,
-                  type = 'C-classification',
-                  kernel = 'radial')
+classifier <- naiveBayes(formula = Purchased ~ .,
+                         data = dataset_train
+)
 
 # Predicting the test set results
 # Vector of the predicted probabilities of the test set
@@ -65,7 +64,7 @@ colnames(grid_set) = c('Age', 'EstimatedSalary')
 y_grid = predict(classifier,
                  newdata = grid_set)
 plot(set[, -3],
-     main = 'Kernel SVM (Training set)',
+     main = 'Naive Bayes (Training set)',
      xlab = 'Age', ylab = 'Estimated Salary',
      xlim = range(X1), ylim = range(X2))
 contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
@@ -81,7 +80,7 @@ colnames(grid_set) = c('Age', 'EstimatedSalary')
 y_grid = predict(classifier,
                  newdata = grid_set)
 plot(set[, -3],
-     main = 'Kernel SVM (Test set)',
+     main = 'Naive Bayes (Test set)',
      xlab = 'Age', ylab = 'Estimated Salary',
      xlim = range(X1), ylim = range(X2))
 contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add = TRUE)
