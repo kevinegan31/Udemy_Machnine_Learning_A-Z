@@ -36,6 +36,9 @@ dataset_test[, 1:(ncol(dataset) - 1)] <-
 library(e1071)
 classifier <- naiveBayes(formula = Purchased ~ .,
                          data = dataset_train)
+# Alternative method for NB classifier
+# classifier <- naiveBayes(x = dataset_train[, 1:(ncol(dataset) - 1)],
+#                          y = dataset_train$Purchased)
 
 # Predicting the test set results
 # Vector of the predicted probabilities of the test set
