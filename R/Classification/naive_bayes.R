@@ -35,8 +35,7 @@ dataset_test[, 1:(ncol(dataset) - 1)] <-
 # Fit classifier regression model
 library(e1071)
 classifier <- naiveBayes(formula = Purchased ~ .,
-                         data = dataset_train
-)
+                         data = dataset_train)
 
 # Predicting the test set results
 # Vector of the predicted probabilities of the test set
